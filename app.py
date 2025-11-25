@@ -31,7 +31,7 @@ ratings = ["NA: Enter a Response","-2: Well Below Expectations","-1: Below Expec
 # ---------------------------
 # SESSION STATE SETUP
 # ---------------------------
-if "answers" not in st.session_state or st.button("New Entry"):
+if "answers" not in st.session_state:
     st.session_state.answers = [0] * len(questions)
 
 # ---------------------------
