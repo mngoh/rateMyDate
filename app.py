@@ -58,10 +58,7 @@ elif st.session_state.page == 2:
 
     for i, q in enumerate(questions):
         st.write(q)
-
-        # Dropdown with text labels
         selected_label = st.selectbox(
-            "",
             rating_options,
             index=2, 
             key=f"q{i}"
