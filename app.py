@@ -5,16 +5,6 @@ from helper_func import *
 import datetime
 
 st.title("RateMyDate")
-# Test
-# ---------------------------
-# SESSION STATE SETUP
-# ---------------------------
-if "page" not in st.session_state:
-    st.session_state.page = 1
-if "date_name" not in st.session_state:
-    st.session_state.date_name = ""
-if "answers" not in st.session_state:
-    st.session_state.answers = {}
 
 # ---------------------------
 # Questions and Ratings
@@ -29,6 +19,16 @@ questions = [
     ]
 
 ratings = ["NA: Enter a Response","-2: Well Below Expectations","-1: Below Expectations", "0: Neutral", "+1: Met Expectations", "+2: Exceeded Expectations"]
+
+# ---------------------------
+# SESSION STATE SETUP
+# ---------------------------
+if "page" not in st.session_state:
+    st.session_state.page = 1
+if "date_name" not in st.session_state:
+    st.session_state.date_name = ""
+if "answers" not in st.session_state or st.button("New Entry"):
+    st.session_state.answers = [0] * len(questions) 
 
 # ---------------------------
 # PAGE 1 — GET Date Name
