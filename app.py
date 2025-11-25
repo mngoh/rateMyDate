@@ -23,8 +23,8 @@ questions = [
         f"How well were {st.session_state.date_name}'s conversational skills?",
         f"How was {st.session_state.date_name}'s punctuality? (early, on-time, late)",
         f"How was {st.session_state.date_name}'s hygiene? (clean, scent)",
-        f"Did {st.session_state.date_name} respect you, the staff, and your time?",
-        f"Did you and {st.session_state.date_name} have good chemistry?",
+        f"How well did {st.session_state.date_name} respect you, the staff, and your time?",
+        f"How was your chemistry with {st.session_state.date_name}?",
         f"BONUS: How well do you feel seen and heard around {st.session_state.date_name}?"
     ]
 
@@ -63,7 +63,7 @@ elif st.session_state.page == 2:
         selected_label = st.selectbox(
             "",
             rating_options,
-            index=2,  # default = Neutral
+            index=2, 
             key=f"q{i}"
         )
 
