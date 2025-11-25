@@ -45,15 +45,26 @@ if st.session_state.page == 1:
 # ---------------------------
 elif st.session_state.page == 2:
     # Show all questions at once
+    labels = {
+        -2: "Horrible",
+        -1: "Bad",
+        0: "Average",
+        1: "Above Average",
+        2: "Great"
+    }
+
     for i, q in enumerate(questions):
-        st.session_state.answers[i] = st.slider(
-            q,  
-            min_value=-2,  
-            max_value=2,  
-            value=0,      
-            step=1,       
+        st.write(q)
+        answer = st.slider(
+            "",  # keep the question above instead
+            min_value=-2,
+            max_value=2,
+            value=0,
+            step=1,
             key=f"q{i}"
         )
+        st.write("Selected:", labels[answer])
+        st.session_state.answers[i] = answer
 
     if st.button("Done"):
         st.session_state.page = 3
