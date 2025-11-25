@@ -48,23 +48,29 @@ elif st.session_state.page == 2:
     labels = {
         -2: "Horrible",
         -1: "Bad",
-        0: "Neutral",
-        1: "Above Average",
-        2: "Great"
+         0: "Neutral",
+         1: "Above Average",
+         2: "Great"
     }
+
+    # Convert label dict into a list of label strings
+    rating_options = list(labels.values())
 
     for i, q in enumerate(questions):
         st.write(q)
-        answer = st.slider(
-            "",  # keep the question above instead
-            min_value=-2,
-            max_value=2,
-            value=0,
-            step=1,
+
+        # Dropdown with text labels
+        selected_label = st.selectbox(
+            "",
+            rating_options,
+            index=2,  # default = Neutral
             key=f"q{i}"
         )
-        st.write("Selected:", labels[answer])
-        st.session_state.answers[i] = answer
+
+        # Convert selected label back to numeric value
+        numeric_value = [k for k, v in labels.items() if v == selected_label][0]
+
+        st.session_state.answers[i] = numeric_value
 
     if st.button("Done"):
         st.session_state.page = 3
