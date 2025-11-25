@@ -2,8 +2,8 @@
 
 def get_recommendation(score):
     date_outcomes = {
-            (-13,0): "This was a Horrible date: RUN",
-            (0,4): "This was an average date, reach out to express your feelings.",
+            (-13,-1): "This was a Horrible date: RUN",
+            (-1,4): "This was an average date, reach out to express your feelings.",
             (4, 8): "This was an Above Average Date: Consider a second date after reflecting.",
             (8, 12): "This was a GREAT DATE: Decide in the next day how you'd like to proceed."
         }
