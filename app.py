@@ -51,7 +51,14 @@ if st.session_state.page == 1:
 elif st.session_state.page == 2:
     # Show all questions at once
     for i, q in enumerate(questions):
-        st.session_state.answers[i] = st.selectbox(q, ratings, key=f"q{i}")
+        st.session_state.answers[i] = st.slider(
+            q,  
+            min_value=-2,  
+            max_value=2,  
+            value=0,      
+            step=1,       
+            key=f"q{i}"
+        )
 
     if st.button("Done"):
         st.session_state.page = 3
@@ -60,73 +67,16 @@ elif st.session_state.page == 2:
 # PAGE 3 — SCORE & SUMMARY
 # ---------------------------        
 elif st.session_state.page == 3:
-    st.write(f"### Thanks for rating {st.session_state.date_name}!")
     st.write("Your answers:")
 
     total_score = 0
     all_answered = True
-
-    # Build Markdown string for nested bullets
-    md_output = ""
-    for i, q in enumerate(questions):
-        ans = st.session_state.answers[i]
-        if ans == "NA":
-            all_answered = False
-        else:
-            try:
-                score = int(ans.split(":")[0])
-                total_score += score
-            except (ValueError, IndexError):
-                all_answered = False
-
-        # Nested bullet formatting
-        md_output += f"- **{q}**\n  - {ans}\n"
-
-    st.markdown(md_output)
 
     # If all questions answered, show total & recommendation
     if all_answered:
         st.write(f"**Total Score:** {total_score}")
         recommendation = get_recommendation(total_score)
         st.write(f"Recommendation: {recommendation}")
-
-        # Build result dict
-        result = {
-            "date_name": st.session_state.date_name,
-            "date_age": st.session_state.date_age,
-            # Convert date object to string (YYYY-MM-DD)
-            "date_date": st.session_state.date_date.isoformat() if isinstance(st.session_state.date_date, (datetime.date, datetime.datetime)) else st.session_state.date_date,
-            "total_score": total_score,
-            "questions": questions,
-            "answers": st.session_state.answers
-        }
-
-        # Save result to JSON
-        file_path = "results.json"
-        if os.path.exists(file_path):
-            with open(file_path, "r") as f:
-                try:
-                    data = json.load(f)
-                except json.JSONDecodeError:
-                    data = []
-        else:
-            data = []
-
-        # Avoid duplicates
-        exists = any(
-            entry.get("date_name") == result["date_name"] and
-            entry.get("date_age") == result["date_age"] and
-            entry.get("date_date") == result["date_date"]
-            for entry in data
-        )
-
-        if not exists:
-            data.append(result)
-            with open(file_path, "w") as f:
-                json.dump(data, f, indent=4)
-            st.success("Your results have been saved!")
-        else:
-            st.info("This entry already exists. No new data was saved.")
     else:
         st.error("ERROR: Please enter a score for all questions before viewing the total.")
 
