@@ -22,7 +22,7 @@ if "answers" not in st.session_state:
 questions = [
         f"How well were {st.session_state.date_name}'s conversational skills?",
         f"How was {st.session_state.date_name}'s punctuality? (early, on-time, late)",
-        f"How was {st.session_state.date_name}'s hygiene? (clean teeth, scent)",
+        f"How was {st.session_state.date_name}'s hygiene? (clean, scent)",
         f"Did {st.session_state.date_name} respect you, the staff, and your time?",
         f"Did you and {st.session_state.date_name} have good chemistry?",
         f"BONUS: How well do you feel seen and heard around {st.session_state.date_name}?"
@@ -35,14 +35,9 @@ ratings = ["NA: Enter a Response","-2: Well Below Expectations","-1: Below Expec
 # ---------------------------
 if st.session_state.page == 1:
     date_name = st.text_input("Who did you go on a date with?", placeholder="Enter Name")
-    date_date = st.date_input("Date of Date:")
-    date_age = st.number_input("Date's Age:", step=1, min_value=20, max_value=40, placeholder=25)
 
-    if st.button("Next") and date_name and date_age and date_date:
+    if st.button("Next") and date_name:
         st.session_state.date_name = date_name
-        st.session_state.date_age = date_age
-        st.session_state.date_date = date_date
-
         st.session_state.page = 2
 
 # ---------------------------
