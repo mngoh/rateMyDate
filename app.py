@@ -37,12 +37,20 @@ if "answers" not in st.session_state:
 # ---------------------------
 # PAGE 1 — GET Date Name
 # ---------------------------
+# Page 1 — GET Date Name
 if st.session_state.page == 1:
+    if "next_clicked" not in st.session_state:
+        st.session_state.next_clicked = False
+
     date_name = st.text_input("Who did you go on a date with?", placeholder="Enter Name")
 
-    if st.button("Next") and date_name:
+    if st.button("Next"):
+        st.session_state.next_clicked = True
+
+    if st.session_state.next_clicked and date_name:
         st.session_state.date_name = date_name
         st.session_state.page = 2
+        st.session_state.next_clicked = False  # reset for next time
 
 # ---------------------------
 # PAGE 2 — QUESTIONS WITH DROPDOWNS
