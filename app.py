@@ -14,7 +14,7 @@ if "page" not in st.session_state:
 if "date_name" not in st.session_state:
     st.session_state.date_name = ""
 if "answers" not in st.session_state or st.button("New Entry"):
-    st.session_state.answers = 0
+    st.session_state.answers = [0]
 
 # ---------------------------
 # Questions and Ratings
