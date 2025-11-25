@@ -74,17 +74,12 @@ elif st.session_state.page == 2:
 # ---------------------------        
 elif st.session_state.page == 3:
     st.write("Your answers:")
-
-    total_score = 0
-    all_answered = True
+    total_score = sum(st.session_state.answers)
 
     # If all questions answered, show total & recommendation
-    if all_answered:
-        st.write(f"**Total Score:** {total_score}")
-        recommendation = get_recommendation(total_score)
-        st.write(f"Recommendation: {recommendation}")
-    else:
-        st.error("ERROR: Please enter a score for all questions before viewing the total.")
+    st.write(f"**Total Score:** {total_score}")
+    recommendation = get_recommendation(total_score)
+    st.write(f"Recommendation: {recommendation}")
 
     # Button to start a new entry
     if st.button("New Entry"):
