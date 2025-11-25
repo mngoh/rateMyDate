@@ -57,8 +57,9 @@ elif st.session_state.page == 2:
     rating_options = list(labels.values())
 
     for i, q in enumerate(questions):
-        st.write(q)
+#        st.write(q)
         selected_label = st.selectbox(
+            q,
             rating_options,
             index=2, 
             key=f"q{i}"
