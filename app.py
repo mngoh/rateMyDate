@@ -66,10 +66,8 @@ elif st.session_state.page == 2:
             index=2, 
             key=f"q{i}"
         )
-
         # Convert selected label back to numeric value
         numeric_value = [k for k, v in labels.items() if v == selected_label][0]
-
         st.session_state.answers[i] = numeric_value
 
     if st.button("Done"):
