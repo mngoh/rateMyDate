@@ -47,8 +47,8 @@ elif st.session_state.page == 2:
     # Show all questions at once
     labels = {
         -2: "Horrible",
-        -1: "Bad",
-         0: "Neutral",
+        -1: "Poor",
+         0: "Average",
          1: "Above Average",
          2: "Great"
     }
