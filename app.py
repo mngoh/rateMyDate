@@ -58,7 +58,7 @@ elif st.session_state.page == 2:
 
 # ---------------------------
 # PAGE 3 — SCORE & SUMMARY
-# ---------------------------
+# ---------------------------        
 elif st.session_state.page == 3:
     st.write(f"### Thanks for rating {st.session_state.date_name}!")
     st.write("Your answers:")
