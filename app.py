@@ -31,7 +31,7 @@ questions = [
 ratings = ["NA: Enter a Response","-2: Well Below Expectations","-1: Below Expectations", "0: Neutral", "+1: Met Expectations", "+2: Exceeded Expectations"]
 
 # ---------------------------
-# PAGE 1 — GET DATE NAME, date of date, and age of date
+# PAGE 1 — GET Date Name
 # ---------------------------
 if st.session_state.page == 1:
     date_name = st.text_input("Who did you go on a date with?", placeholder="Enter Name")
@@ -78,7 +78,7 @@ elif st.session_state.page == 2:
 # ---------------------------        
 elif st.session_state.page == 3:
     st.write("Your answers:")
-    total_score = sum(st.session_state.answers)
+    total_score = sum(a for a in st.session_state.answers if isinstance(a, int))
 
     # If all questions answered, show total & recommendation
     st.write(f"**Total Score:** {total_score}")
@@ -88,7 +88,7 @@ elif st.session_state.page == 3:
     # Button to start a new entry
     if st.button("New Entry"):
         st.session_state.page = 1
-        st.session_state.answers = ["NA"] * len(questions)
+        st.session_state.answers = [0] * len(questions)   
         st.session_state.date_name = ""
         st.session_state.date_age = ""
         st.session_state.date_date = ""
